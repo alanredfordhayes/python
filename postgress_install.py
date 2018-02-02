@@ -55,7 +55,7 @@ def ident_md5():
         "/var/lib/pgsql/data/pg_hba.conf", inplace=True
     ):
         edits.append(line)
-    return edits
+    return len(edits)
 
 
 def init_database():
