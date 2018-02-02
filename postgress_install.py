@@ -54,8 +54,8 @@ def ident_md5():
     for line in fileinput.input(
         "/var/lib/pgsql/data/pg_hba.conf", inplace=True
     ):
-        edits.append(line)
-    return len(edits)
+        print(line)
+    return
 
 
 def init_database():
