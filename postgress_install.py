@@ -64,7 +64,8 @@ def main(packages):
 
 
 main(packages)
-f = open(filename, 'r')
-sub = re.sub(' ident', 'md5', f, count=0, flags=0)
-fw = open(filename, 'w')
-fw.write(sub)
+with open(filename) as f:
+    newText = f.read().replace('A', 'Orange')
+
+with open(filename, "w") as f:
+    f.write(filename)
