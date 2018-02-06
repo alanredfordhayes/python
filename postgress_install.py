@@ -64,4 +64,5 @@ def main(packages):
 
 main(packages)
 f = open(filename, 'r')
-print f
+for line in f:
+    print line
