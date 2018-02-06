@@ -1,9 +1,9 @@
 #!/bin/python
 import subprocess
-import fileinput
 
 
 packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server']
+filename = '/var/lib/pgsql/data/pg_hba.conf'
 
 
 def rpm_qa_package(package):
@@ -49,15 +49,6 @@ def install_packages(packages):
     return package_list[1]
 
 
-def ident_md5():
-    edits = []
-    for line in fileinput.input(
-        "/var/lib/pgsql/data/pg_hba.conf", inplace=True
-    ):
-        edits.extend(line)
-    return edits
-
-
 def init_database():
     args1 = ["postgresql-setup", "initdb"]
     postgresql_setup = subprocess.Popen(args1, stdout=subprocess.PIPE)
@@ -72,3 +63,5 @@ def main(packages):
 
 
 main(packages)
+f = open(filename, 'r')
+print f
