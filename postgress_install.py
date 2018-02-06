@@ -71,5 +71,4 @@ def main(packages):
     print database
 
 
-check = ident_md5()
-print check
+main(packages)
