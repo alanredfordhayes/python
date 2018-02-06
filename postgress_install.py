@@ -65,4 +65,4 @@ def main(packages):
 main(packages)
 f = open(filename, 'r')
 for line in f:
-    print line
+    print line,
