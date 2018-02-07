@@ -117,8 +117,8 @@ def main(packages, packages1, packages2, fileToSearch, textToSearch,
     change_ownership(id1, fileToSearch)
     install_packages(packages1)
     install_packages(packages2)
-    # systemctyl_start(service)
-    # systemctyl_enable(service)
+    systemctyl_start(service)
+    systemctyl_enable(service)
 
 
 main(packages, packages1, packages2, fileToSearch, textToSearch, textToReplace,
