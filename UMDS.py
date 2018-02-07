@@ -25,15 +25,13 @@ def open_file_append(file1, append_line):
 
 def odbcinst_data(found2, found3):
     if type(found2) == str and type(found3) == str:
-        append_line = """
-[PostgreSQL]
+        append_line = """[PostgreSQL]
 Description=PostgreSQL ODBC driver (Unicode version)
 Driver64=%s
 Setup64=%s
 Debug=0
 CommLog=1
-UsageCount=1
-        """ % (found2, found3)
+UsageCount=1""" % (found2, found3)
         return append_line
 
 
