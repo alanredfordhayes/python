@@ -65,6 +65,7 @@ Database = %s''' % (TNS_SERVICE, USER_ID, UserID, User, Database)
 
 
 def create_link(found, dst):
+    print found
     print dst
     if type(found) == str:
         os.symlink(found, dst)
