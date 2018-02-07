@@ -3,6 +3,7 @@ import os
 file1 = '/etc/odbcinst.ini'
 file2 = 'psqlodbcw.so'
 file3 = 'libodbcpsqlS.so'
+file4 '/etc/odbc.ini'
 path = '/usr/lib64/'
 
 
@@ -46,3 +47,4 @@ found2 = find_file(path, file2)
 found3 = find_file(path, file3)
 pg_odb = odbcinst_data(found2, found3)
 edit_file(file1, pg_odb)
+create_file(file4)
