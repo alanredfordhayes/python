@@ -3,7 +3,8 @@ import subprocess
 import fileinput
 
 
-packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server']
+packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server', 'git',
+            'python-pip', 'gcc', 'python-devel', 'systemd-devel']
 fileToSearch = '/var/lib/pgsql/data/pg_hba.conf'
 textToSearch = ' ident'
 textToReplace = ' md5'
