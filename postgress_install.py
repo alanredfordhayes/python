@@ -10,6 +10,7 @@ fileToSearch = '/var/lib/pgsql/data/pg_hba.conf'
 textToSearch = ' ident'
 textToReplace = ' md5'
 pip_module = 'git+https://github.com/systemd/python-systemd.git#egg=systemd'
+service = 'postgresql'
 
 
 def rpm_qa_package(package):
@@ -69,13 +70,30 @@ def search_and_replace_file(fileToSearch, textToSearch, textToReplace):
     f.close()
 
 
+def systemctyl_start(service):
+    args1 = ["systemctl", "start", service]
+    systemctl = subprocess.Popen(args1, stdout=subprocess.PIPE)
+    output = systemctl.communicate()[0]
+    return output
+
+
+def systemctyl_enable(service):
+    args1 = ["systemctl", "enable", service]
+    systemctl = subprocess.Popen(args1, stdout=subprocess.PIPE)
+    output = systemctl.communicate()[0]
+    return output
+
+
 def main(packages, packages1, packages2, fileToSearch, textToSearch,
-         textToReplace):
+         textToReplace, service):
     install_packages(packages)
     init_database()
     search_and_replace_file(fileToSearch, textToSearch, textToReplace)
     install_packages(packages1)
     install_packages(packages2)
+    systemctyl_start(service)
+    systemctyl_enable(service)
 
 
-main(packages, packages1, packages2, fileToSearch, textToSearch, textToReplace)
+main(packages, packages1, packages2, fileToSearch, textToSearch, textToReplace,
+     service)
