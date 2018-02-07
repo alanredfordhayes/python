@@ -67,7 +67,7 @@ main(packages)
 fileToSearch = '/var/lib/pgsql/data/pg_hba.conf'
 textToSearch = ' ident'
 textToReplace = ' md5'
-f = fileinput.FileInput(fileToSearch, inplace=True, backup='.bak')
+f = fileinput.Input(fileToSearch, inplace=True, backup='.bak')
 for line in f:
     print(line.replace(textToSearch, textToReplace))
 f.close()
