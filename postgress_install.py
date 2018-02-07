@@ -1,6 +1,7 @@
 #!/bin/python
 import subprocess
 import fileinput
+import os
 
 
 packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server', 'git']
@@ -11,6 +12,7 @@ textToSearch = ' ident'
 textToReplace = ' md5'
 pip_module = 'git+https://github.com/systemd/python-systemd.git#egg=systemd'
 service = 'postgresql'
+user1 = 'postgres'
 
 
 def rpm_qa_package(package):
@@ -66,7 +68,7 @@ def init_database():
 def search_and_replace_file(fileToSearch, textToSearch, textToReplace):
     f = fileinput.input(fileToSearch, inplace=True, backup='.bak')
     for line in f:
-        print(line.replace(textToSearch, textToReplace))
+        print(line.replace(textToSearch, textToReplace).rstrip())
     f.close()
 
 
@@ -84,16 +86,31 @@ def systemctyl_enable(service):
     return output
 
 
+def get_linux_id(user1):
+    args1 = ["id", user1]
+    linux_id = subprocess.Popen(args1, stdout=subprocess.PIPE)
+    output = linux_id.communicate()[0]
+    return output
+
+
+def change_owner(file1, uid, gid):
+    fd = os.open(file1, os.O_RDONLY)
+    os.fchown(fd, uid, -1)
+    os.fchown(fd, -1, gid)
+    os.close(fd)
+
+
 def main(packages, packages1, packages2, fileToSearch, textToSearch,
-         textToReplace, service):
+         textToReplace, service, user1):
     install_packages(packages)
     init_database()
     search_and_replace_file(fileToSearch, textToSearch, textToReplace)
+    get_linux_id(user1)
     install_packages(packages1)
     install_packages(packages2)
-    systemctyl_start(service)
-    systemctyl_enable(service)
+    # systemctyl_start(service)
+    # systemctyl_enable(service)
 
 
 main(packages, packages1, packages2, fileToSearch, textToSearch, textToReplace,
-     service)
+     service, user1)
