@@ -23,7 +23,7 @@ def open_file_append(file1, append_line):
     f.close()
 
 
-def find_append(found2, found3):
+def odbcinst_data(found2, found3):
     if type(found2) == str and type(found3) == str:
         append_line = """
         [PostgreSQL]
@@ -34,10 +34,17 @@ def find_append(found2, found3):
         CommLog=1
         UsageCount=1
         """ % (found2, found3)
-        print append_line
+        return append_line
+
+
+def edit_file(file, data):
+    f = open(file, "w")
+    f.write(data)
+    f.close
 
 
 create_file(file1)
 found2 = find_file(path, file2)
 found3 = find_file(path, file3)
-find_append(found2, found3)
+pg_odb = odbcinst_data(found2, found3)
+edit_file(file1, pg_odb)
