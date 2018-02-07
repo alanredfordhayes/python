@@ -13,8 +13,17 @@ def psql_create_user(psql_db, psql_pass):
     return output
 
 
+def psql_create_db(psql_db):
+    create_db = "CREATE DATABASE %s;" % (psql_db)
+    args1 = ['sudo', '-u', 'postgres', 'psql', '-c', create_db]
+    psql = subprocess.Popen(args1, stdout=subprocess.PIPE)
+    output = psql.communicate()[0]
+    return output
+
+
 def main(psql_db, psql_pass):
     psql_create_user(psql_db, psql_pass)
+    psql_create_db(psql_db)
 
 
 main(psql_db, psql_pass)
