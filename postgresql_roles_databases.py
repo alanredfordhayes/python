@@ -6,7 +6,7 @@ psql_db = 'umds'
 
 def psql_create_user(psql_db):
     create_user = "CREATE USER %s WITH PASSWORD %s;" % (psql_db, psql_db)
-    args1 = ['sudo', '-u', 'postgres', '/var/lib/pgsql', 'psql', '-c', create_user]
+    args1 = ['sudo', '-u', 'postgres', 'psql', '-c', create_user]
     psql = subprocess.Popen(args1, stdout=subprocess.PIPE)
     output = psql.communicate()[0]
     return output
