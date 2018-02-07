@@ -57,7 +57,7 @@ Server = localhost
 Port = 5432
 UserID = %s
 User = %s
-Database = <database_name>''' % (TNS_SERVICE, USER_ID, UserID, User, Database)
+Database = %s''' % (TNS_SERVICE, USER_ID, UserID, User, Database)
     print data
 
 
