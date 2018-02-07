@@ -1,7 +1,7 @@
 import os
 
 file1 = '/etc/odbcinst.ini'
-file2 = 'libodbcpsqlS.so'
+file2 = 'libodbcpsqlS11.so'
 path2 = '/usr/lib64/'
 
 
