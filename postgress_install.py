@@ -4,6 +4,9 @@ import fileinput
 
 
 packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server']
+fileToSearch = '/var/lib/pgsql/data/pg_hba.conf'
+textToSearch = ' ident'
+textToReplace = ' md5'
 
 
 def rpm_qa_package(package):
@@ -56,18 +59,17 @@ def init_database():
     return output
 
 
-def main(packages):
+def search_and_replace_file(fileToSearch, textToSearch, textToReplace):
+    f = fileinput.input(fileToSearch, inplace=True, backup='.bak')
+    for line in f:
+        print(line.replace(textToSearch, textToReplace))
+    f.close()
+
+
+def main(packages, fileToSearch, textToSearch, textToReplace):
     install_packages(packages)
-    database = init_database()
-    print database
+    init_database()
+    search_and_replace_file()
 
 
-main(packages)
-
-fileToSearch = '/var/lib/pgsql/data/pg_hba.conf'
-textToSearch = ' ident'
-textToReplace = ' md5'
-f = fileinput.input(fileToSearch, inplace=True, backup='.bak')
-for line in f:
-    print(line.replace(textToSearch, textToReplace))
-f.close()
+main(packages, fileToSearch, textToSearch, textToReplace)
