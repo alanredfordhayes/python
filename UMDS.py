@@ -1,8 +1,8 @@
 import os
 
 file1 = '/etc/odbcinst.ini'
-file2 = 'libodbcpsqlS.so'
-file3 = 'psqlodbcw.so'
+file2 = 'psqlodbcw.so'
+file3 = 'libodbcpsqlS.so'
 path = '/usr/lib64/'
 
 
@@ -23,8 +23,8 @@ def open_file_append(file1, append_line):
     f.close()
 
 
-def find_append(found, found1):
-    if type(found) == str and type(found1) == str:
+def find_append(found2, found3):
+    if type(found2) == str and type(found3) == str:
         append_line = '''
         [PostgreSQL]
         Description=PostgreSQL ODBC driver (Unicode version)
@@ -33,7 +33,7 @@ def find_append(found, found1):
         Debug=0
         CommLog=1
         UsageCount=1
-        ''' % (found, found1)
+        ''' % (found2, found3)
         print append_line
 
 
