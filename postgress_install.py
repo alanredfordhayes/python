@@ -1,7 +1,6 @@
 #!/bin/python
 import subprocess
 import fileinput
-import pip
 
 
 packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server', 'git']
@@ -70,10 +69,6 @@ def search_and_replace_file(fileToSearch, textToSearch, textToReplace):
     f.close()
 
 
-def pip_module_install(module):
-    pip.main(['install', module])
-
-
 def main(packages, packages1, packages2, fileToSearch, textToSearch,
          textToReplace):
     install_packages(packages)
@@ -81,7 +76,6 @@ def main(packages, packages1, packages2, fileToSearch, textToSearch,
     search_and_replace_file(fileToSearch, textToSearch, textToReplace)
     install_packages(packages1)
     install_packages(packages2)
-    pip_module_install(pip_module)
 
 
 main(packages, packages1, packages2, fileToSearch, textToSearch, textToReplace)
