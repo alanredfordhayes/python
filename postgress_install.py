@@ -4,7 +4,8 @@ import fileinput
 import os
 
 
-packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server', 'git']
+packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server', 'git',
+            'postgresql-odbc']
 packages1 = ['epel-release', 'git']
 packages2 = ['gcc', 'python-devel', 'systemd-devel', 'python-pip']
 fileToSearch = '/var/lib/pgsql/data/pg_hba.conf'
