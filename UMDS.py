@@ -8,7 +8,7 @@ file5 = '.s.PGSQL.5432'
 path1 = '/var/run/postgresql/'
 path = '/usr/lib64/'
 db = 'umds'
-link_dst = '/tmp/' + file5
+link_dst = '/tmp/'
 
 
 def create_file(file1):
