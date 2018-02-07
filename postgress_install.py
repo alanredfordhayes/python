@@ -4,7 +4,6 @@ import fileinput
 
 
 packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server']
-filename =
 
 
 def rpm_qa_package(package):
@@ -70,4 +69,4 @@ textToSearch = ' ident'
 textToReplace = ' md5'
 with fileinput.FileInput(fileToSearch, inplace=True, backup='.bak') as file:
     for line in file:
-        print(line.replace(textToSearch, textToReplace), end='')
+        print(line.replace(textToSearch, textToReplace))
