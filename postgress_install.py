@@ -3,8 +3,9 @@ import subprocess
 import fileinput
 
 
-packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server', 'git',
-            'python-pip', 'gcc', 'python-devel', 'systemd-devel']
+packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server', 'git']
+packages1 = ['epel-release', 'git']
+packages2 = ['gcc', 'python-devel', 'systemd-devel', 'python-pip']
 fileToSearch = '/var/lib/pgsql/data/pg_hba.conf'
 textToSearch = ' ident'
 textToReplace = ' md5'
@@ -67,10 +68,12 @@ def search_and_replace_file(fileToSearch, textToSearch, textToReplace):
     f.close()
 
 
-def main(packages, fileToSearch, textToSearch, textToReplace):
+def main(packages, packages1, packages2, fileToSearch, textToSearch, textToReplace):
     install_packages(packages)
     init_database()
     search_and_replace_file(fileToSearch, textToSearch, textToReplace)
+    install_packages(packages1)
+    install_packages(packages2)
 
 
-main(packages, fileToSearch, textToSearch, textToReplace)
+main(packages, packages1, fileToSearch, textToSearch, textToReplace)
