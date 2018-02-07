@@ -33,7 +33,7 @@ def psql_grant_priviledges(psql_db):
 def main(psql_db, psql_pass):
     psql_create_user(psql_db, psql_pass)
     psql_create_db(psql_db)
-    psql_grant_priviledges
+    psql_grant_priviledges(psql_db)
 
 
 main(psql_db, psql_pass)
