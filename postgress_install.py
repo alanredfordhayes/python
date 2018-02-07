@@ -90,6 +90,7 @@ def get_linux_id(user1):
     args1 = ["id", user1]
     linux_id = subprocess.Popen(args1, stdout=subprocess.PIPE)
     output = linux_id.communicate()[0]
+    output = output.split()
     return output
 
 
