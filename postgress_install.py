@@ -1,6 +1,7 @@
 #!/bin/python
 import subprocess
 import fileinput
+import pip
 
 
 packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server', 'git']
@@ -9,6 +10,7 @@ packages2 = ['gcc', 'python-devel', 'systemd-devel', 'python-pip']
 fileToSearch = '/var/lib/pgsql/data/pg_hba.conf'
 textToSearch = ' ident'
 textToReplace = ' md5'
+pip_module = 'git+https://github.com/systemd/python-systemd.git#egg=systemd'
 
 
 def rpm_qa_package(package):
@@ -68,6 +70,10 @@ def search_and_replace_file(fileToSearch, textToSearch, textToReplace):
     f.close()
 
 
+def pip_module_install(module):
+    pip.main('install', module)
+
+
 def main(packages, packages1, packages2, fileToSearch, textToSearch,
          textToReplace):
     install_packages(packages)
@@ -78,3 +84,4 @@ def main(packages, packages1, packages2, fileToSearch, textToSearch,
 
 
 main(packages, packages1, packages2, fileToSearch, textToSearch, textToReplace)
+pip_module_install(pip_module)
