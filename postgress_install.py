@@ -77,4 +77,4 @@ def main(packages, packages1, packages2, fileToSearch, textToSearch,
     install_packages(packages2)
 
 
-main(packages, packages1, fileToSearch, textToSearch, textToReplace)
+main(packages, packages1, packages2, fileToSearch, textToSearch, textToReplace)
