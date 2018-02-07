@@ -94,20 +94,19 @@ def get_linux_id(user1):
     return output
 
 
-def change_ownership(id_list):
-    uid_list = id_list[0].split('=')
-    gid_list = id_list[1].split('=')
-    uid = uid_list[1].rstrip('(postgres)')
-    gid = gid_list[1].rstrip('(postgres)')
-    print uid
-    print gid
-
-
 def change_owner(file1, uid, gid):
     fd = os.open(file1, os.O_RDONLY)
     os.fchown(fd, uid, -1)
     os.fchown(fd, -1, gid)
     os.close(fd)
+
+
+def change_ownership(id_list, file1):
+    uid_list = id_list[0].split('=')
+    gid_list = id_list[1].split('=')
+    uid = uid_list[1].rstrip('(postgres)')
+    gid = gid_list[1].rstrip('(postgres)')
+    change_owner(file1, uid, gid)
 
 
 def main(packages, packages1, packages2, fileToSearch, textToSearch,
