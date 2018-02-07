@@ -4,8 +4,11 @@ file1 = '/etc/odbcinst.ini'
 file2 = 'psqlodbcw.so'
 file3 = 'libodbcpsqlS.so'
 file4 = '/etc/odbc.ini'
+file5 = '.s.PGSQL.5432'
+path1 = '/var/run/postgresql/'
 path = '/usr/lib64/'
 db = 'umds'
+link_dst = '/tmp/', file5
 
 
 def create_file(file1):
@@ -61,6 +64,11 @@ Database = %s''' % (TNS_SERVICE, USER_ID, UserID, User, Database)
     return data
 
 
+def create_link(found, dst):
+    if type(found) == str:
+        os.symlink(found, dst)
+
+
 def edit_file(file, data):
     f = open(file, "w")
     f.write(data)
@@ -75,3 +83,5 @@ edit_file(file1, pg_odbcinst)
 create_file(file4)
 pg_odbc_data = odbc_data(db)
 edit_file(file4, pg_odbc_data)
+found4 = find_file(path1, file5)
+create_link(found4, link_dst)
