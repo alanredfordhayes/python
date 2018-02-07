@@ -58,7 +58,7 @@ Port = 5432
 UserID = %s
 User = %s
 Database = %s''' % (TNS_SERVICE, USER_ID, UserID, User, Database)
-    print data
+    return data
 
 
 def edit_file(file, data):
@@ -70,7 +70,8 @@ def edit_file(file, data):
 create_file(file1)
 found2 = find_file(path, file2)
 found3 = find_file(path, file3)
-pg_odb = odbcinst_data(found2, found3)
-edit_file(file1, pg_odb)
+pg_odbcinst = odbcinst_data(found2, found3)
+edit_file(file1, pg_odbcinst)
 create_file(file4)
-odbc_data(db)
+pg_odbc_data = odbc_data(db)
+edit_file(file4, pg_odbc_data)
