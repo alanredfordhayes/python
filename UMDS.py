@@ -5,6 +5,7 @@ file2 = 'psqlodbcw.so'
 file3 = 'libodbcpsqlS.so'
 file4 = '/etc/odbc.ini'
 path = '/usr/lib64/'
+db = 'umds'
 
 
 def create_file(file1):
@@ -36,6 +37,30 @@ UsageCount=1""" % (found2, found3)
         return append_line
 
 
+def odbc_data(db):
+    -TNS_SERVICE = db
+    -USER_ID = db
+    UserID = db
+    User = db
+    Database = db
+    data = '''[UMDS_DSN]
+;DB_TYPE = PostgreSQL
+;SERVER_NAME = localhost
+;SERVER_PORT = 5432
+;TNS_SERVICE = %s
+;USER_ID = %s
+Driver = PostgreSQL
+DSN = UMDS_DSN
+ServerName = localhost
+PortNumber = 5432
+Server = localhost
+Port = 5432
+UserID = %s
+User = %s
+Database = <database_name>''' % (-TNS_SERVICE, -USER_ID, UserID, User, Database)
+    print data
+
+
 def edit_file(file, data):
     f = open(file, "w")
     f.write(data)
@@ -48,3 +73,4 @@ found3 = find_file(path, file3)
 pg_odb = odbcinst_data(found2, found3)
 edit_file(file1, pg_odb)
 create_file(file4)
+odbc_data(db)
