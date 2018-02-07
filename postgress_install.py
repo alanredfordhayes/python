@@ -13,8 +13,6 @@ textToReplace = ' md5'
 pip_module = 'git+https://github.com/systemd/python-systemd.git#egg=systemd'
 service = 'postgresql'
 user1 = 'postgres'
-psql_db = 'umds'
-psql_db_password = 'Se!..Umd$..001..7'
 
 
 def rpm_qa_package(package):
@@ -110,21 +108,8 @@ def change_ownership(id_list, file1):
     change_owner(file1, uid, gid)
 
 
-def psql_create_user(db, password1):
-    args1 = ['echo', password1]
-    args2 = ['psql', 'createuser', '-d', db, '-P', '-s', '-E', db]
-    echo = subprocess.Popen(args1, stdout=subprocess.PIPE)
-    psql = subprocess.Popen(args2, stdin=echo.stdout, stdout=subprocess.PIPE)
-    echo.stdout.close()
-    output = psql.communicate()[0].rstrip()
-    echo.wait()
-    output_length = len(output)
-    if (output_length != 0):
-        return output
-
-
 def main(packages, packages1, packages2, fileToSearch, textToSearch,
-         textToReplace, service, user1, psql_db, psql_db_password):
+         textToReplace, service, user1):
     install_packages(packages)
     init_database()
     search_and_replace_file(fileToSearch, textToSearch, textToReplace)
@@ -134,7 +119,6 @@ def main(packages, packages1, packages2, fileToSearch, textToSearch,
     install_packages(packages2)
     systemctyl_start(service)
     systemctyl_enable(service)
-    psql_create_user(psql_db, psql_db_password)
 
 
 main(packages, packages1, packages2, fileToSearch, textToSearch, textToReplace,
