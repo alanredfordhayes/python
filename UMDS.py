@@ -3,7 +3,7 @@ import os
 file1 = '/etc/odbcinst.ini'
 file2 = 'psqlodbcw.so'
 file3 = 'libodbcpsqlS.so'
-file4 '/etc/odbc.ini'
+file4 = '/etc/odbc.ini'
 path = '/usr/lib64/'
 
 
