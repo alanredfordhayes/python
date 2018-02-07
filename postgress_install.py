@@ -1,9 +1,10 @@
 #!/bin/python
 import subprocess
+import fileinput
 
 
 packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server']
-filename = '/var/lib/pgsql/data/pg_hba.conf'
+filename =
 
 
 def rpm_qa_package(package):
@@ -63,8 +64,10 @@ def main(packages):
 
 
 main(packages)
-with open(filename) as f:
-    newText = f.read().replace(' ident', ' md5')
 
-with open(filename, "w") as f:
-    f.write(filename)
+fileToSearch = '/var/lib/pgsql/data/pg_hba.conf'
+textToSearch = ' ident'
+textToReplace = ' md5'
+with fileinput.FileInput(fileToSearch, inplace=True, backup='.bak') as file:
+    for line in file:
+        print(line.replace(textToSearch, textToReplace), end='')
