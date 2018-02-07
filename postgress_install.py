@@ -81,7 +81,7 @@ def main(packages, packages1, packages2, fileToSearch, textToSearch,
     search_and_replace_file(fileToSearch, textToSearch, textToReplace)
     install_packages(packages1)
     install_packages(packages2)
+    pip_module_install(pip_module)
 
 
 main(packages, packages1, packages2, fileToSearch, textToSearch, textToReplace)
-pip_module_install(pip_module)
