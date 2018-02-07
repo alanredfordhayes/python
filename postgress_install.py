@@ -1,6 +1,5 @@
 #!/bin/python
 import subprocess
-import re
 
 
 packages = ['postgresql-9.2', 'postgresql-contrib', 'postgresql-server']
@@ -65,7 +64,7 @@ def main(packages):
 
 main(packages)
 with open(filename) as f:
-    newText = f.read().replace('A', 'Orange')
+    newText = f.read().replace(' ident', ' md5')
 
 with open(filename, "w") as f:
     f.write(filename)
