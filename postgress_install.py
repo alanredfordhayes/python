@@ -94,6 +94,10 @@ def get_linux_id(user1):
     return output
 
 
+def change_ownership(id_list):
+    print id_list
+
+
 def change_owner(file1, uid, gid):
     fd = os.open(file1, os.O_RDONLY)
     os.fchown(fd, uid, -1)
@@ -107,7 +111,7 @@ def main(packages, packages1, packages2, fileToSearch, textToSearch,
     init_database()
     search_and_replace_file(fileToSearch, textToSearch, textToReplace)
     id1 = get_linux_id(user1)
-    print type(id1)
+    change_ownership(id1)
     install_packages(packages1)
     install_packages(packages2)
     # systemctyl_start(service)
