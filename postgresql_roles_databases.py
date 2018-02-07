@@ -2,7 +2,7 @@ import subprocess
 
 
 psql_db = 'umds'
-psql_db_password = 'Se!..Umd$..001..7'
+psql_db_password = 'umds'
 
 
 def psql_create_user(psql_db, psql_db_pass):
