@@ -71,7 +71,7 @@ def search_and_replace_file(fileToSearch, textToSearch, textToReplace):
 
 
 def pip_module_install(module):
-    pip.main('install', module)
+    pip.main(['install', module])
 
 
 def main(packages, packages1, packages2, fileToSearch, textToSearch,
