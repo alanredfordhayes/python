@@ -96,8 +96,7 @@ def get_linux_id(user1):
 
 def change_owner(file1, uid, gid):
     fd = os.open(file1, os.O_RDONLY)
-    os.fchown(fd, uid, -1)
-    os.fchown(fd, -1, gid)
+    os.fchown(fd, uid, gid)
     os.close(fd)
 
 
