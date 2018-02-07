@@ -24,8 +24,6 @@ def open_file_append(file1, append_line):
 
 
 def find_append(found2, found3):
-    print found2
-    print found3
     if type(found2) == str and type(found3) == str:
         append_line = """
         [PostgreSQL]
@@ -41,5 +39,5 @@ def find_append(found2, found3):
 
 create_file(file1)
 found2 = find_file(path, file2)
-found3 = find_file(path, file2)
+found3 = find_file(path, file3)
 find_append(found2, found3)
