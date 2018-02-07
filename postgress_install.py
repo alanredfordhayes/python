@@ -103,8 +103,8 @@ def change_owner(file1, uid, gid):
 def change_ownership(id_list, file1):
     uid_list = id_list[0].split('=')
     gid_list = id_list[1].split('=')
-    uid = int[uid_list[1].rstrip('(postgres)')]
-    gid = int[gid_list[1].rstrip('(postgres)')]
+    uid = int(uid_list[1].rstrip('(postgres)'))
+    gid = int(gid_list[1].rstrip('(postgres)'))
     change_owner(file1, uid, gid)
 
 
