@@ -18,4 +18,5 @@ def find_file(path1, file1):
 
 create_file(file1)
 found = find_file(path2, file2)
-print type(found)
+if type(found) == str:
+    print found
