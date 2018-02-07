@@ -38,8 +38,8 @@ UsageCount=1""" % (found2, found3)
 
 
 def odbc_data(db):
-    -TNS_SERVICE = db
-    -USER_ID = db
+    TNS_SERVICE = db
+    USER_ID = db
     UserID = db
     User = db
     Database = db
@@ -57,7 +57,7 @@ Server = localhost
 Port = 5432
 UserID = %s
 User = %s
-Database = <database_name>''' % (-TNS_SERVICE, -USER_ID, UserID, User, Database)
+Database = <database_name>''' % (TNS_SERVICE, USER_ID, UserID, User, Database)
     print data
 
 
