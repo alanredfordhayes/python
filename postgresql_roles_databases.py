@@ -5,17 +5,12 @@ psql_db = 'umds'
 psql_db_password = 'Se!..Umd$..001..7'
 
 
-def psql_create_user(db, password1):
-    args1 = ['echo', password1]
-    args2 = ['psql', 'createuser', '-P', db]
-    echo = subprocess.Popen(args1, stdout=subprocess.PIPE)
-    psql = subprocess.Popen(args2, stdin=echo.stdout, stdout=subprocess.PIPE)
-    echo.stdout.close()
-    output = psql.communicate()[0].rstrip()
-    echo.wait()
-    output_length = len(output)
-    if (output_length != 0):
-        return output
+def psql_create_user(psql_db, psql_db_pass):
+    create_user = 'CREATE USER', psql_db, 'WITH PASSWORD', psql_db_pass, ';'
+    args1 = ['psql', '-c', create_user]
+    psql = subprocess.Popen(args1, stdout=subprocess.PIPE)
+    output = psql.communicate()[0]
+    return output
 
 
 def main(psql_db, psql_db_password):
