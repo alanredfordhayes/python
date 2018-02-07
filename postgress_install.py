@@ -68,7 +68,8 @@ def search_and_replace_file(fileToSearch, textToSearch, textToReplace):
     f.close()
 
 
-def main(packages, packages1, packages2, fileToSearch, textToSearch, textToReplace):
+def main(packages, packages1, packages2, fileToSearch, textToSearch,
+         textToReplace):
     install_packages(packages)
     init_database()
     search_and_replace_file(fileToSearch, textToSearch, textToReplace)
