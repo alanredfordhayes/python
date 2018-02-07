@@ -15,7 +15,7 @@ pip_module = 'git+https://github.com/systemd/python-systemd.git#egg=systemd'
 
 def rpm_qa_package(package):
     args1 = ["rpm", "-qa"]
-    args2 = ["grep", package]
+    args2 = ["grep", "-w", package]
     rpm = subprocess.Popen(args1, stdout=subprocess.PIPE)
     grep = subprocess.Popen(args2, stdin=rpm.stdout, stdout=subprocess.PIPE)
     rpm.stdout.close()
