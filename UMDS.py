@@ -24,8 +24,10 @@ def open_file_append(file1, append_line):
 
 
 def find_append(found2, found3):
+    print found2
+    print found3
     if type(found2) == str and type(found3) == str:
-        append_line = '''
+        append_line = """
         [PostgreSQL]
         Description=PostgreSQL ODBC driver (Unicode version)
         Driver64=%s
@@ -33,7 +35,7 @@ def find_append(found2, found3):
         Debug=0
         CommLog=1
         UsageCount=1
-        ''' % (found2, found3)
+        """ % (found2, found3)
         print append_line
 
 
