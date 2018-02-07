@@ -69,7 +69,7 @@ def search_and_replace_file(fileToSearch, textToSearch, textToReplace):
 def main(packages, fileToSearch, textToSearch, textToReplace):
     install_packages(packages)
     init_database()
-    search_and_replace_file()
+    search_and_replace_file(fileToSearch, textToSearch, textToReplace)
 
 
 main(packages, fileToSearch, textToSearch, textToReplace)
