@@ -105,7 +105,8 @@ def main(packages, packages1, packages2, fileToSearch, textToSearch,
     install_packages(packages)
     init_database()
     search_and_replace_file(fileToSearch, textToSearch, textToReplace)
-    get_linux_id(user1)
+    id1 = get_linux_id(user1)
+    print id1
     install_packages(packages1)
     install_packages(packages2)
     # systemctyl_start(service)
