@@ -46,7 +46,7 @@ def odbc_data(db):
     UserID = db
     User = db
     Database = db
-    data = '''[UMDS_DSN]
+    data = '''[ODBC]
 ;DB_TYPE = PostgreSQL
 ;SERVER_NAME = localhost
 ;SERVER_PORT = 5432
