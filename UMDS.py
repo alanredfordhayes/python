@@ -70,6 +70,11 @@ def edit_file(file, data):
     f.close
 
 
+def check_symlink(dir1, dir2):
+    print(dir1)
+    print(dir2)
+
+
 create_file(file1)
 found2 = find_file(path, file2)
 found3 = find_file(path, file3)
@@ -80,5 +85,4 @@ pg_odbc_data = odbc_data(db)
 edit_file(file4, pg_odbc_data)
 found4 = find_file(path1, file5)
 found5 = find_file(link_dst, file5)
-print found4
-print found5
+check_symlink(found4, found5)
