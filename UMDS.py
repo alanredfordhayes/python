@@ -64,13 +64,6 @@ Database = %s''' % (TNS_SERVICE, USER_ID, UserID, User, Database)
     return data
 
 
-def create_link(found, dst):
-    print found
-    print dst
-    if type(found) == str:
-        os.symlink(found, dst)
-
-
 def edit_file(file, data):
     f = open(file, "w")
     f.write(data)
@@ -86,4 +79,6 @@ create_file(file4)
 pg_odbc_data = odbc_data(db)
 edit_file(file4, pg_odbc_data)
 found4 = find_file(path1, file5)
-create_link(found4, link_dst)
+found5 = find_file(link_dst, file5)
+print found4
+print found5
