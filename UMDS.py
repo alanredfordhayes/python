@@ -71,8 +71,8 @@ def edit_file(file, data):
 
 
 def check_symlink(dir1, dir2):
-    print(dir1)
-    print(dir2)
+    dir1 == '/var/run/postgres/.s.PGSQL.5432'
+    dir2 == '/tmp/.s.PGSQL.5432'
 
 
 create_file(file1)
