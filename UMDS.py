@@ -46,7 +46,7 @@ def odbc_data(db):
     UserID = db
     User = db
     Database = db
-    data = '''[UMDS_DSN]
+    data = '''[ODBC]
 ;DB_TYPE = PostgreSQL
 ;SERVER_NAME = localhost
 ;SERVER_PORT = 5432
@@ -64,17 +64,16 @@ Database = %s''' % (TNS_SERVICE, USER_ID, UserID, User, Database)
     return data
 
 
-def create_link(found, dst):
-    print found
-    print dst
-    if type(found) == str:
-        os.symlink(found, dst)
-
-
 def edit_file(file, data):
     f = open(file, "w")
     f.write(data)
     f.close
+
+
+def check_symlink(dir1, dir2):
+    if not (dir1 == '/var/run/postgresql/.s.PGSQL.5432'
+            and dir2 == '/tmp/.s.PGSQL.5432'):
+        os.symlink(dir1, dir2)
 
 
 create_file(file1)
@@ -86,4 +85,5 @@ create_file(file4)
 pg_odbc_data = odbc_data(db)
 edit_file(file4, pg_odbc_data)
 found4 = find_file(path1, file5)
-create_link(found4, link_dst)
+found5 = find_file(link_dst, file5)
+check_symlink(found4, found5)
