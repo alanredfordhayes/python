@@ -6,7 +6,7 @@ url = "https://dotdash.atlassian.net/rest/api/3/search"
 email = input("email address of admin user: ")
 api_token = input("api_token of admin user: ")
 auth = HTTPBasicAuth(email, api_token)
-jqlQuery = 'Key = VIDEO-34771'
+jqlQuery = 'Key = VIDEO-34788'
 
 headers = {
 "Accept": "application/json"

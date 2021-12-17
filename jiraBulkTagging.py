@@ -6,12 +6,12 @@ import csv
 import os
 import time
 
-domain = input("domain instances of atlassian: ")
+domain = os.environ['jira_domain']
 url = "https://" + domain + ".atlassian.net/rest/api/3/search"
-email = input("email address of admin user: ")
-api_token = input("api_token of admin user: ")
+email = os.environ['jira_admin_email']
+api_token = os.environ['jira_api_token']
 auth = HTTPBasicAuth(email, api_token)
-csv_name = '/Users/ahayes/Downloads/Live About Primary Videos_ 10_12_2021 - Video Lookup 2021-10-12T1057.csv'
+csv_name = '/Users/ahayes/Downloads/QA Metadata Sheet - THE SPRUCE- READY.csv'
 filePath = "/Users/ahayes/Downloads/badDocID.txt"
 csv_path = "/Users/ahayes/Downloads/import.csv"
 csv_header = ['Summary', 'Issue key', 'Issue id', 'Issue Type', 'Tags', 'Status']
@@ -31,8 +31,8 @@ with open(csv_name, newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         lenghtIssues = 0
-        newTags = row['Video Tag to Add']
-        videoDocID = row['Video Doc ID']
+        newTags = row['NEW QA TAGS']
+        videoDocID = row['Video Document ID']
         jqlQuery = 'project = "VIDEO" AND "Document ID[Number]" = ' + videoDocID
         
         headers = {
@@ -50,6 +50,7 @@ with open(csv_name, newline='') as csvfile:
         params=query,
         auth=auth
         )
+        print(response)
 
         data = json.loads(response.text)
         issues = data['issues']
@@ -65,7 +66,7 @@ with open(csv_name, newline='') as csvfile:
             else:
                 totalTagData = tagData + ", " + newTags
             data = ['Afghanistan', 652090, 'AF', 'AFG']
-            csv_line = [ sumData, keyData, idData, issueTypeData, totalTagData, 'Published' ]
+            csv_line = [ sumData, keyData, idData, issueTypeData, totalTagData, 'On Hold (migrated)' ]
             print(csv_line)
             importCSV = open(csv_path, 'a', encoding='UTF8')
             writer = csv.writer(importCSV)
@@ -76,6 +77,7 @@ with open(csv_name, newline='') as csvfile:
             print('Doc ID Not Foudn in Jira')
             badDocID = open(filePath, "a")
             badDocID.write(videoDocID)
+            badDocID.write(', ')
             badDocID.close()
 
         # print(data['issues'][0]['fields']['customfield_13794'])
